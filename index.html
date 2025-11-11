@@ -3,36 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>H₂O Exodus – A Sci-Fi Novel by Andrew Leekander</title>
-<meta name="description" content="H₂O Exodus – a post-apocalyptic ocean-world sci-fi thriller by Andrew Leekander. Available now on Amazon Kindle.">
+<title>H₂O Exodus – Sci-Fi Novel by Andrew Leekander | Amazon Kindle</title>
+<meta name="description"
+  content="A gripping post-apocalyptic sci-fi ebook by Andrew Leekander. Read H₂O Exodus on Amazon Kindle – a flooded-Earth survival thriller where humanity fights to endure.">
 <link rel="canonical" href="https://www.amazon.com/dp/B0G1KW72TY">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="favicon.png">
 
+<!-- SEO structured data -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Book",
+ "name": "H₂O Exodus",
+ "author": "Andrew Leekander",
+ "url": "https://www.amazon.com/dp/B0G1KW72TY",
+ "image": "https://aleekander.github.io/h20-exodus-site/cover.jpg",
+ "genre": "Science Fiction",
+ "description": "A flooded-Earth survival story where humanity fights extinction.",
+ "inLanguage": "en",
+ "publisher": "Kindle Direct Publishing",
+ "bookFormat": "EBook"
+}
+</script>
+
 <style>
+/* visual styles remain the same as your last ripple build */
 html,body{
   margin:0;padding:0;height:100%;
   font-family:'Open Sans',sans-serif;color:#f0f4f8;
   overflow:hidden;background:#000;
 }
-
-/* --- Split layout --- */
 .container{
   display:flex;align-items:center;justify-content:center;
   height:100vh;width:100vw;overflow:hidden;
   background:radial-gradient(circle at 35% 45%,#04131d 0%,#000 100%);
 }
-
-/* --- Left: Book --- */
 .left{
   position:relative;flex:1;
   display:flex;align-items:center;justify-content:center;
   overflow:visible;z-index:1;
 }
-
-/* removed the ::after overlay completely */
-
-/* --- Right: Text --- */
 .right{
   flex:1.1;max-width:640px;padding:2rem;z-index:3;
 }
@@ -40,6 +51,10 @@ html,body{
 h1{
   font-family:'Orbitron',sans-serif;font-size:2.8rem;
   color:#00baff;text-shadow:0 0 25px #00aaff;margin:0 0 .6rem;
+}
+h2{
+  font-size:1.2rem;color:#7ecbff;font-weight:600;
+  margin:-.5rem 0 1.5rem 0;letter-spacing:0.03em;
 }
 .tagline{font-size:1.25rem;color:#a6b6c8;}
 .blurb{font-size:1.05rem;color:#ccd4df;line-height:1.5;}
@@ -54,8 +69,6 @@ h1{
 footer{font-size:.9rem;color:#6a7a89;}
 footer a{color:#56c8ff;text-decoration:none;border-bottom:1px solid rgba(86,200,255,.6);}
 footer a:hover{color:#9fe0ff;border-bottom-color:#9fe0ff;}
-
-/* --- Cover --- */
 .cover-wrapper{position:relative;animation:ambientPulse 14s ease-in-out infinite;}
 img.cover{
   width:340px;max-width:90%;border-radius:6px;
@@ -63,8 +76,6 @@ img.cover{
   transition:transform .4s,box-shadow .4s;z-index:3;position:relative;
 }
 img.cover:hover{transform:scale(1.05);box-shadow:0 0 90px rgba(0,255,255,.8);}
-
-/* reflection */
 .reflection{
   position:absolute;top:100%;left:0;width:100%;height:100%;
   transform:scaleY(-1);overflow:hidden;opacity:.3;z-index:1;
@@ -80,16 +91,12 @@ img.cover:hover{transform:scale(1.05);box-shadow:0 0 90px rgba(0,255,255,.8);}
   70%{transform:scaleY(-1) translateY(-3px) skewY(-.5deg);}
   100%{transform:scaleY(-1);}
 }
-
-/* --- Ripples --- */
 .ripple{
   position:absolute;top:50%;left:50%;
   border-radius:50%;transform:translate(-50%,-50%);
   pointer-events:none;opacity:0;z-index:0;
   mix-blend-mode:screen;
 }
-
-/* multi-layer realistic gradients */
 .ripple.one{
   background:radial-gradient(circle,
     rgba(0,255,255,0.5) 0%,
@@ -107,54 +114,31 @@ img.cover:hover{transform:scale(1.05);box-shadow:0 0 90px rgba(0,255,255,.8);}
     rgba(0,60,160,0.07) 85%,
     transparent 100%);
 }
-
-/* outward + inward bounce */
 .cover-wrapper:hover .ripple.one{animation:rippleBounce1 4s ease-in-out forwards;}
 .cover-wrapper:hover .ripple.two{animation:rippleBounce2 5.2s ease-in-out forwards;}
-
 @keyframes rippleBounce1{
   0%{width:0;height:0;opacity:.9;}
   35%{width:90vw;height:90vw;opacity:.55;}
-  60%{width:180vw;height:180vw;opacity:.35;} /* hits edge */
-  75%{width:140vw;height:140vw;opacity:.25;} /* rebounds inward */
+  60%{width:180vw;height:180vw;opacity:.35;}
+  75%{width:140vw;height:140vw;opacity:.25;}
   90%{width:160vw;height:160vw;opacity:.18;}
   100%{width:200vw;height:200vw;opacity:0;}
 }
 @keyframes rippleBounce2{
   0%{width:0;height:0;opacity:.8;}
   30%{width:100vw;height:100vw;opacity:.45;}
-  55%{width:200vw;height:200vw;opacity:.3;} /* hits edge */
-  70%{width:150vw;height:150vw;opacity:.22;} /* recoil */
+  55%{width:200vw;height:200vw;opacity:.3;}
+  70%{width:150vw;height:150vw;opacity:.22;}
   85%{width:190vw;height:190vw;opacity:.16;}
   100%{width:260vw;height:260vw;opacity:0;}
 }
-
-/* --- breathing --- */
 @keyframes ambientPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.02);}}
-
-/* --- responsive --- */
 @media(max-width:900px){
   .container{flex-direction:column;overflow:auto;padding:2rem 1rem;}
   .left,.right{flex:none;width:100%;text-align:center;}
   .right{margin-top:2rem;}
 }
 </style>
-
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"Book",
- "name":"H₂O Exodus",
- "author":"Andrew Leekander",
- "url":"https://www.amazon.com/dp/B0G1KW72TY",
- "image":"https://aleekander.github.io/h20-exodus-site/cover.jpg",
- "genre":"Science Fiction",
- "description":"A flooded-Earth survival story where humanity fights extinction.",
- "inLanguage":"en",
- "publisher":"Kindle Direct Publishing",
- "bookFormat":"EBook"
-}
-</script>
 </head>
 
 <body>
@@ -163,18 +147,20 @@ img.cover:hover{transform:scale(1.05);box-shadow:0 0 90px rgba(0,255,255,.8);}
     <div class="cover-wrapper">
       <div class="ripple one"></div>
       <div class="ripple two"></div>
-      <img src="cover.jpg" alt="H₂O Exodus Book Cover" class="cover">
+      <img src="cover.jpg" alt="H₂O Exodus sci-fi ebook cover by Andrew Leekander" class="cover">
       <div class="reflection"><img src="cover.jpg" alt=""></div>
     </div>
   </div>
 
   <div class="right">
     <h1>H₂O Exodus</h1>
+    <h2>Post-Apocalyptic Sci-Fi Ebook on Amazon Kindle</h2>
     <div class="tagline">A post-apocalyptic ocean-world sci-fi odyssey by Andrew Leekander</div>
     <div class="blurb">
       When the seas reclaim the Earth, humanity must evolve—or vanish.<br>
       <em>H₂O Exodus</em> explores the struggle for survival and identity in a world reborn by water and technology.
     </div>
+    <p>If you enjoy dystopian science-fiction worlds, flood-survival stories, or technology-meets-nature adventures like <em>The Expanse</em> or <em>Waterworld</em>, this Kindle novel delivers a gripping vision of humanity's final voyage.</p>
 
     <a href="https://www.amazon.com/dp/B0G1KW72TY" target="_blank" rel="noopener" class="cta-button">
       Read it on Amazon Kindle →
@@ -189,11 +175,5 @@ img.cover:hover{transform:scale(1.05);box-shadow:0 0 90px rgba(0,255,255,.8);}
   </div>
 </div>
 
-<script>
-fetch('https://api.countapi.xyz/hit/aleekander.github.io/h20-exodus-site')
-  .then(r=>r.json())
-  .then(r=>{document.getElementById('visit-count').textContent=r.value.toLocaleString();})
-  .catch(()=>{document.getElementById('visit-count').textContent='N/A';});
-</script>
 </body>
 </html>
