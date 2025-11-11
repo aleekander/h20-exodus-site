@@ -16,56 +16,74 @@
     font-family:'Open Sans',sans-serif;
     color:#f0f4f8;overflow-x:hidden;
   }
-  body{
-    background:radial-gradient(circle at 30% 20%,#0e1825 0%,#05080c 100%);
-    position:relative;
-  }
-  body::before{
-    content:"";position:absolute;top:0;left:0;right:0;bottom:0;
-    background:repeating-radial-gradient(circle at 50% 50%,rgba(0,180,255,0.08)0%,rgba(0,180,255,0.02)5%,transparent 10%);
-    animation:drift 40s linear infinite;mix-blend-mode:screen;opacity:0.4;z-index:0;
-  }
-  @keyframes drift{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-  .container{position:relative;z-index:1;max-width:880px;text-align:center;margin:auto;padding:3rem 1rem;}
 
-  /* Cover + glisten */
-  .cover-wrapper{position:relative;display:inline-block;}
+  /* Calm static background */
+  body{
+    background:radial-gradient(circle at 30% 20%,#0d1520 0%,#05070a 90%);
+  }
+
+  .container{
+    max-width:880px;text-align:center;margin:auto;
+    padding:3rem 1rem;
+  }
+
+  /* Book cover with ripple effect */
+  .cover-wrapper{
+    position:relative;
+    display:inline-block;
+  }
+
   img.cover{
-    width:300px;max-width:90%;border-radius:6px;
+    width:300px;max-width:90%;
+    border-radius:6px;
     box-shadow:0 0 35px rgba(0,174,255,0.45);
     margin-bottom:1.5rem;
-    transition:transform .3s ease-in-out,box-shadow .4s ease-in-out;
+    transition:transform .3s ease-in-out;
   }
-  img.cover:hover{transform:scale(1.04);box-shadow:0 0 50px rgba(0,200,255,0.6);}
-  .cover-wrapper::after{
-    content:"";position:absolute;top:0;left:0;right:0;bottom:0;border-radius:6px;
-    background:linear-gradient(115deg,rgba(255,255,255,0.15)0%,rgba(255,255,255,0.03)45%,rgba(255,255,255,0.15)100%);
-    opacity:0;transform:translateY(-100%) rotate(10deg);
-    transition:opacity .3s,transform 1.2s ease-in-out;pointer-events:none;
+  img.cover:hover{
+    transform:scale(1.03);
   }
-  .cover-wrapper:hover::after{opacity:1;transform:translateY(100%) rotate(10deg);}
 
-  h1{font-family:'Orbitron',sans-serif;font-size:2.8rem;color:#56c8ff;margin-bottom:.4rem;text-shadow:0 0 20px #1e90ff;}
+  /* Ripple underlay */
+  .cover-wrapper::before{
+    content:"";
+    position:absolute;
+    left:50%;top:50%;
+    width:0;height:0;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(0,174,255,0.25)0%,rgba(0,174,255,0.05)70%,transparent 100%);
+    transform:translate(-50%,-50%);
+    opacity:0;
+  }
+  .cover-wrapper:hover::before{
+    animation:ripple 1.5s ease-out;
+  }
+  @keyframes ripple{
+    0%{width:0;height:0;opacity:.35;}
+    70%{width:450px;height:450px;opacity:.12;}
+    100%{width:650px;height:650px;opacity:0;}
+  }
+
+  h1{
+    font-family:'Orbitron',sans-serif;font-size:2.8rem;
+    color:#56c8ff;margin-bottom:.4rem;text-shadow:0 0 20px #1e90ff;
+  }
   .tagline{font-size:1.2rem;color:#c0cbd6;margin-bottom:2rem;}
   .blurb{max-width:650px;margin:0 auto 2.5rem;font-size:1.05rem;color:#ccd4df;}
 
   .cta-button{
-    display:inline-block;background:#56c8ff;color:#fff;font-size:1.2rem;
-    padding:.9rem 2.4rem;text-decoration:none;border-radius:4px;
+    display:inline-block;background:#56c8ff;color:#fff;
+    font-size:1.2rem;padding:.9rem 2.4rem;text-decoration:none;border-radius:4px;
     box-shadow:0 0 15px rgba(0,180,255,0.3);
     transition:background .3s,box-shadow .3s;
   }
   .cta-button:hover{background:#1da1ff;box-shadow:0 0 25px rgba(0,210,255,0.6);}
 
+  #counter{margin-top:1.2rem;font-size:.95rem;color:#88b9d8;}
+
   footer{margin-top:2.5rem;font-size:.9rem;color:#6a7a89;}
   footer a{color:#56c8ff;text-decoration:none;border-bottom:1px solid rgba(86,200,255,0.6);}
   footer a:hover{color:#9fe0ff;border-bottom-color:#9fe0ff;}
-
-  #counter{
-    margin-top:1.2rem;
-    font-size:0.95rem;
-    color:#88b9d8;
-  }
 
   @media(max-width:600px){
     h1{font-size:2.2rem;}
@@ -108,7 +126,7 @@
       Read it on Amazon Kindle →
     </a>
 
-    <div id="counter">👁️ Page visits: <span id="visit-count">loading...</span></div>
+    <div id="counter">👁️ Page visits: <span id="visit-count">loading…</span></div>
 
     <footer>
       © 2025 Andrew Leekander · All Rights Reserved<br>
@@ -117,16 +135,14 @@
   </div>
 
   <script>
-    // simple CountAPI integration
     fetch('https://api.countapi.xyz/hit/aleekander.github.io/h20-exodus-site')
-      .then(res => res.json())
-      .then(res => {
-        document.getElementById('visit-count').textContent = res.value.toLocaleString();
+      .then(r=>r.json())
+      .then(r=>{
+        document.getElementById('visit-count').textContent=r.value.toLocaleString();
       })
-      .catch(() => {
-        document.getElementById('visit-count').textContent = 'N/A';
-      });
+      .catch(()=>{document.getElementById('visit-count').textContent='N/A';});
   </script>
 </body>
 </html>
+
 
