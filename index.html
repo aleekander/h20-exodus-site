@@ -11,150 +11,157 @@
 <link rel="icon" type="image/png" href="favicon.png">
 
 <style>
-  html,body{
-    margin:0;padding:0;height:100%;
-    font-family:'Open Sans',sans-serif;
-    color:#f0f4f8;overflow-x:hidden;
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    color: #f0f4f8;
+    overflow-x: hidden;
+    background: radial-gradient(circle at 30% 20%, #0c141d 0%, #040608 90%);
   }
 
-  /* Calm background */
-  body{
-    background:radial-gradient(circle at 30% 20%,#0c141d 0%,#040608 90%);
+  .container {
+    max-width: 880px;
+    text-align: center;
+    margin: auto;
+    padding: 3rem 1rem;
   }
 
-  .container{
-    max-width:880px;text-align:center;margin:auto;
-    padding:3rem 1rem;
+  /* ===== Book Cover ===== */
+  .cover-wrapper {
+    position: relative;
+    display: inline-block;
+    z-index: 0;
+    animation: ambientPulse 14s ease-in-out infinite;
   }
 
-  /* Book cover + ripple effects */
-  .cover-wrapper{
-    position:relative;
-    display:inline-block;
-    z-index:0;
-    animation:ambientPulse 12s ease-in-out infinite;
+  img.cover {
+    position: relative;
+    z-index: 3;
+    width: 300px;
+    max-width: 90%;
+    border-radius: 6px;
+    box-shadow: 0 0 35px rgba(0,174,255,0.45);
+    margin-bottom: 1.5rem;
+    transition: transform .4s ease-in-out, box-shadow .4s ease-in-out;
   }
 
-  img.cover{
-    position:relative;
-    z-index:1;
-    width:300px;max-width:90%;
-    border-radius:6px;
-    box-shadow:0 0 35px rgba(0,174,255,0.45);
-    margin-bottom:1.5rem;
-    transition:transform .3s ease-in-out, box-shadow .3s ease-in-out;
+  img.cover:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 55px rgba(0,200,255,0.75);
   }
 
-  img.cover:hover{
-    transform:scale(1.04);
-    box-shadow:0 0 55px rgba(0,200,255,0.7);
+  /* ===== Dual Ripple Layers ===== */
+  .ripple {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
   }
 
-  /* Layered ripples */
-  .cover-wrapper::before,
-  .cover-wrapper::after{
-    content:"";
-    position:absolute;
-    left:50%;top:55%;
-    width:0;height:0;
-    border-radius:50%;
-    background:radial-gradient(circle,
-      rgba(80,200,255,0.45) 0%,
-      rgba(30,100,180,0.12) 60%,
-      transparent 100%);
-    transform:translate(-50%,-50%);
-    opacity:0;
-    z-index:-1;
-    pointer-events:none;
+  .ripple.one {
+    background: radial-gradient(circle, rgba(90,210,255,0.45) 0%, rgba(20,90,190,0.15) 60%, transparent 100%);
+  }
+  .ripple.two {
+    background: radial-gradient(circle, rgba(60,190,255,0.3) 0%, rgba(15,80,170,0.1) 60%, transparent 100%);
   }
 
-  .cover-wrapper:hover::before{
-    animation:ripple1 1.5s ease-out forwards;
+  .cover-wrapper:hover .ripple.one {
+    animation: rippleExpand1 1.5s ease-out forwards;
   }
-  .cover-wrapper:hover::after{
-    animation:ripple2 2.4s ease-out forwards;
-  }
-
-  @keyframes ripple1{
-    0%{width:0;height:0;opacity:.45;}
-    60%{width:420px;height:420px;opacity:.25;}
-    100%{width:620px;height:620px;opacity:0;}
-  }
-  @keyframes ripple2{
-    0%{width:0;height:0;opacity:.25;}
-    60%{width:500px;height:500px;opacity:.15;}
-    100%{width:820px;height:820px;opacity:0;}
+  .cover-wrapper:hover .ripple.two {
+    animation: rippleExpand2 2.2s ease-out forwards;
   }
 
-  /* Ambient slow breathing pulse */
-  @keyframes ambientPulse{
-    0%,100%{transform:scale(1);}
-    50%{transform:scale(1.01);}
+  @keyframes rippleExpand1 {
+    0% { width: 0; height: 0; opacity: 0.45; }
+    50% { width: 350px; height: 350px; opacity: 0.3; }
+    100% { width: 700px; height: 700px; opacity: 0; }
   }
 
-  h1{
-    font-family:'Orbitron',sans-serif;
-    font-size:2.8rem;
-    color:#56c8ff;
-    margin-bottom:.4rem;
-    text-shadow:0 0 20px #1e90ff;
+  @keyframes rippleExpand2 {
+    0% { width: 0; height: 0; opacity: 0.35; }
+    50% { width: 500px; height: 500px; opacity: 0.2; }
+    100% { width: 900px; height: 900px; opacity: 0; }
   }
 
-  .tagline{
-    font-size:1.2rem;
-    color:#c0cbd6;
-    margin-bottom:2rem;
+  /* ===== Ambient “breathing” pulse ===== */
+  @keyframes ambientPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.015); }
   }
 
-  .blurb{
-    max-width:650px;
-    margin:0 auto 2.5rem;
-    font-size:1.05rem;
-    color:#ccd4df;
+  /* ===== Text & Buttons ===== */
+  h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    color: #56c8ff;
+    margin-bottom: .4rem;
+    text-shadow: 0 0 20px #1e90ff;
   }
 
-  .cta-button{
-    display:inline-block;
-    background:#56c8ff;
-    color:#fff;
-    font-size:1.2rem;
-    padding:.9rem 2.4rem;
-    text-decoration:none;
-    border-radius:4px;
-    box-shadow:0 0 15px rgba(0,180,255,0.3);
-    transition:background .3s,box-shadow .3s;
+  .tagline {
+    font-size: 1.2rem;
+    color: #c0cbd6;
+    margin-bottom: 2rem;
   }
 
-  .cta-button:hover{
-    background:#1da1ff;
-    box-shadow:0 0 25px rgba(0,210,255,0.6);
+  .blurb {
+    max-width: 650px;
+    margin: 0 auto 2.5rem;
+    font-size: 1.05rem;
+    color: #ccd4df;
   }
 
-  #counter{
-    margin-top:1.2rem;
-    font-size:.95rem;
-    color:#88b9d8;
+  .cta-button {
+    display: inline-block;
+    background: #56c8ff;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: .9rem 2.4rem;
+    text-decoration: none;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(0,180,255,0.3);
+    transition: background .3s, box-shadow .3s;
   }
 
-  footer{
-    margin-top:2.5rem;
-    font-size:.9rem;
-    color:#6a7a89;
+  .cta-button:hover {
+    background: #1da1ff;
+    box-shadow: 0 0 25px rgba(0,210,255,0.6);
   }
-  footer a{
-    color:#56c8ff;
-    text-decoration:none;
-    border-bottom:1px solid rgba(86,200,255,0.6);
+
+  #counter {
+    margin-top: 1.2rem;
+    font-size: .95rem;
+    color: #88b9d8;
   }
-  footer a:hover{
-    color:#9fe0ff;
-    border-bottom-color:#9fe0ff;
+
+  footer {
+    margin-top: 2.5rem;
+    font-size: .9rem;
+    color: #6a7a89;
+  }
+
+  footer a {
+    color: #56c8ff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(86,200,255,0.6);
+  }
+
+  footer a:hover {
+    color: #9fe0ff;
+    border-bottom-color: #9fe0ff;
   }
 
   @media(max-width:600px){
-    h1{font-size:2.2rem;}
-    .tagline{font-size:1.05rem;}
-    .blurb{font-size:1rem;}
+    h1 { font-size: 2.2rem; }
+    .tagline { font-size: 1.05rem; }
+    .blurb { font-size: 1rem; }
   }
 </style>
 
@@ -178,6 +185,8 @@
 <body>
   <div class="container">
     <div class="cover-wrapper">
+      <div class="ripple one"></div>
+      <div class="ripple two"></div>
       <img src="cover.jpg" alt="H₂O Exodus Book Cover" class="cover">
     </div>
 
