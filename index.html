@@ -1,24 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>H₂O Exodus – Andrew Leekander</title>
-<meta name="description" content="A post-apocalyptic sci-fi novel by Andrew Leekander.">
-<link rel="canonical" href="https://www.amazon.com/dp/B0G1KW72TY">
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"Book",
- "name":"H₂O Exodus",
- "author":"Andrew Leekander",
- "url":"https://www.amazon.com/dp/B0G1KW72TY",
- "genre":"Science Fiction",
- "description":"A flooded-Earth survival story where humanity fights extinction."
-}
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H₂O Exodus – A Sci-Fi Novel by Andrew Leekander</title>
+  <meta name="description"
+        content="H₂O Exodus – a post-apocalyptic ocean-world sci-fi thriller by Andrew Leekander. Available now on Amazon Kindle.">
+  <link rel="canonical" href="https://www.amazon.com/dp/B0G1KW72TY">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Core layout */
+    body {
+      margin:0; padding:0;
+      font-family:'Open Sans',sans-serif;
+      color:#f0f4f8;
+      background:radial-gradient(circle at top, #0b1118 0%, #050608 90%);
+      line-height:1.5;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+    }
+    .container {
+      max-width:880px;
+      text-align:center;
+      padding:2rem;
+    }
+
+    /* Cover */
+    img.cover {
+      width:300px; max-width:90%;
+      border-radius:6px;
+      box-shadow:0 0 35px rgba(0,174,255,0.45);
+      margin-bottom:1.5rem;
+      transition:transform 0.3s ease-in-out;
+    }
+    img.cover:hover { transform:scale(1.04); }
+
+    /* Typography */
+    h1 {
+      font-family:'Orbitron',sans-serif;
+      font-size:2.8rem;
+      color:#56c8ff;
+      margin-bottom:0.4rem;
+      text-shadow:0 0 20px #1e90ff;
+    }
+    .tagline {
+      font-size:1.2rem;
+      color:#c0cbd6;
+      margin-bottom:2rem;
+    }
+    .blurb {
+      max-width:650px;
+      margin:0 auto 2.5rem auto;
+      font-size:1.05rem;
+      color:#ccd4df;
+    }
+
+    /* CTA */
+    .cta-button {
+      display:inline-block;
+      background:#56c8ff;
+      color:#fff;
+      font-size:1.2rem;
+      padding:0.9rem 2.4rem;
+      text-decoration:none;
+      border-radius:4px;
+      transition:background 0.3s ease-in-out;
+    }
+    .cta-button:hover {
+      background:#1da1ff;
+    }
+
+    /* Footer */
+    footer {
+      margin-top:2.5rem;
+      font-size:0.9rem;
+      color:#6a7a89;
+    }
+
+    @media(max-width:600px){
+      h1{font-size:2.2rem;}
+      .tagline{font-size:1.05rem;}
+      .blurb{font-size:1rem;}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Book",
+    "name":"H₂O Exodus",
+    "author":"Andrew Leekander",
+    "url":"https://www.amazon.com/dp/B0G1KW72TY",
+    "image":"https://aleekander.github.io/h20-exodus-site/COVERIMAGE",
+    "genre":"Science Fiction",
+    "description":"A flooded-Earth survival story where humanity fights extinction.",
+    "inLanguage":"en",
+    "publisher":"Kindle Direct Publishing",
+    "bookFormat":"EBook"
+  }
+  </script>
 </head>
 <body>
-<h1>H₂O Exodus</h1>
-<p>Read the novel on <a href="https://www.amazon.com/dp/B0G1KW72TY">Amazon Kindle</a>.</p>
+  <div class="container">
+    <img src="COVERIMAGE" alt="H₂O Exodus Book Cover" class="cover">
+    <h1>H₂O Exodus</h1>
+    <div class="tagline">A post-apocalyptic ocean-world sci-fi odyssey by Andrew Leekander</div>
+    <div class="blurb">
+      When the seas reclaim the Earth, humanity must evolve—or vanish.  
+      <em>H₂O Exodus</em> explores the struggle for survival and identity in a world reborn by water and technology.
+    </div>
+    <a href="https://www.amazon.com/dp/B0G1KW72TY" target="_blank" rel="noopener" class="cta-button">Read it on Amazon Kindle →</a>
+    <footer>© 2025 Andrew Leekander · All Rights Reserved</footer>
+  </div>
 </body>
 </html>
