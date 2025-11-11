@@ -13,33 +13,38 @@
 html,body{
   margin:0;padding:0;height:100%;
   font-family:'Open Sans',sans-serif;color:#f0f4f8;
-  overflow:hidden;
-  background:#000 radial-gradient(circle at 40% 25%,#061019 0%,#000 100%);
+  overflow:hidden;background:#000;
 }
 
-/* ---- split layout ---- */
+/* ---- main flex container ---- */
 .container{
   display:flex;align-items:center;justify-content:center;
-  height:100vh;overflow:hidden;position:relative;
-  padding:0 3rem;box-sizing:border-box;
+  height:100vh;width:100vw;overflow:hidden;
+  background:radial-gradient(circle at 30% 40%,#031621 0%,#000 100%);
 }
 
-/* left = book side */
+/* ---- left: book section ---- */
 .left{
   position:relative;
-  flex:1;display:flex;justify-content:center;align-items:center;
-  overflow:hidden;z-index:1;
+  flex:1;display:flex;align-items:center;justify-content:center;
+  overflow:visible;z-index:1;
 }
 
-/* right = text side */
+/* subtle gradient overlay so left merges with right */
+.left::after{
+  content:"";position:absolute;top:0;right:0;width:40%;height:100%;
+  background:linear-gradient(to right,rgba(0,0,0,0) 0%,#000 100%);
+  pointer-events:none;z-index:5;
+}
+
+/* ---- right: text ---- */
 .right{
-  flex:1;z-index:2;max-width:600px;
+  flex:1.1;max-width:640px;padding:2rem;z-index:3;
 }
 .right>*{margin-bottom:1.3rem;}
-.right h1{
-  font-family:'Orbitron',sans-serif;
-  font-size:2.8rem;color:#00baff;text-shadow:0 0 25px #00aaff;
-  margin:0 0 .6rem 0;
+h1{
+  font-family:'Orbitron',sans-serif;font-size:2.8rem;
+  color:#00baff;text-shadow:0 0 25px #00aaff;margin:0 0 .6rem;
 }
 .tagline{font-size:1.25rem;color:#a6b6c8;}
 .blurb{font-size:1.05rem;color:#ccd4df;line-height:1.5;}
@@ -55,12 +60,14 @@ footer{font-size:.9rem;color:#6a7a89;}
 footer a{color:#56c8ff;text-decoration:none;border-bottom:1px solid rgba(86,200,255,.6);}
 footer a:hover{color:#9fe0ff;border-bottom-color:#9fe0ff;}
 
-/* ---- cover + effects ---- */
-.cover-wrapper{position:relative;animation:ambientPulse 14s ease-in-out infinite;}
+/* ---- cover & reflection ---- */
+.cover-wrapper{
+  position:relative;animation:ambientPulse 14s ease-in-out infinite;
+}
 img.cover{
-  width:320px;max-width:90%;border-radius:6px;
+  width:340px;max-width:90%;border-radius:6px;
   box-shadow:0 0 45px rgba(0,255,255,.6);
-  transition:transform .4s,box-shadow .4s;z-index:3;
+  transition:transform .4s,box-shadow .4s;z-index:3;position:relative;
 }
 img.cover:hover{transform:scale(1.05);box-shadow:0 0 70px rgba(0,255,255,.9);}
 
@@ -81,7 +88,7 @@ img.cover:hover{transform:scale(1.05);box-shadow:0 0 70px rgba(0,255,255,.9);}
   100%{transform:scaleY(-1);}
 }
 
-/* ripples */
+/* ---- full-viewport ripples ---- */
 .ripple{
   position:absolute;top:50%;left:50%;
   border-radius:50%;transform:translate(-50%,-50%);
@@ -98,19 +105,19 @@ img.cover:hover{transform:scale(1.05);box-shadow:0 0 70px rgba(0,255,255,.9);}
 @keyframes rippleEdge1{
   0%{width:0;height:0;opacity:.9;}
   40%{width:80vw;height:80vw;opacity:.45;}
-  70%{width:100vw;height:100vw;opacity:.35;}
-  90%{width:85vw;height:85vw;opacity:.25;}
-  100%{width:100vw;height:100vw;opacity:0;}
+  70%{width:120vw;height:120vw;opacity:.35;}
+  90%{width:90vw;height:90vw;opacity:.25;}
+  100%{width:140vw;height:140vw;opacity:0;}
 }
 @keyframes rippleEdge2{
   0%{width:0;height:0;opacity:.7;}
-  40%{width:90vw;height:90vw;opacity:.35;}
-  70%{width:120vw;height:120vw;opacity:.25;}
-  90%{width:95vw;height:95vw;opacity:.15;}
-  100%{width:130vw;height:130vw;opacity:0;}
+  40%{width:100vw;height:100vw;opacity:.35;}
+  70%{width:150vw;height:150vw;opacity:.25;}
+  90%{width:100vw;height:100vw;opacity:.15;}
+  100%{width:180vw;height:180vw;opacity:0;}
 }
 
-/* idle breathing */
+/* ---- idle breathing ---- */
 @keyframes ambientPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.02);}}
 
 /* responsive stack */
@@ -118,6 +125,7 @@ img.cover:hover{transform:scale(1.05);box-shadow:0 0 70px rgba(0,255,255,.9);}
   .container{flex-direction:column;overflow:auto;padding:2rem 1rem;}
   .left,.right{flex:none;width:100%;text-align:center;}
   .right{margin-top:2rem;}
+  .left::after{display:none;}
 }
 </style>
 
