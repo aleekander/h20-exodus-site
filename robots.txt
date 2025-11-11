@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aleekander.github.io/h20-exodus-site/sitemap.xml
