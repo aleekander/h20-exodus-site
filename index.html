@@ -17,9 +17,9 @@
     color:#f0f4f8;overflow-x:hidden;
   }
 
-  /* Calm static background */
+  /* Calm background */
   body{
-    background:radial-gradient(circle at 30% 20%,#0d1520 0%,#05070a 90%);
+    background:radial-gradient(circle at 30% 20%,#0c141d 0%,#040608 90%);
   }
 
   .container{
@@ -27,11 +27,12 @@
     padding:3rem 1rem;
   }
 
-  /* Book cover with ripple effect */
+  /* Book cover + ripple effects */
   .cover-wrapper{
     position:relative;
     display:inline-block;
     z-index:0;
+    animation:ambientPulse 12s ease-in-out infinite;
   }
 
   img.cover{
@@ -41,22 +42,25 @@
     border-radius:6px;
     box-shadow:0 0 35px rgba(0,174,255,0.45);
     margin-bottom:1.5rem;
-    transition:transform .3s ease-in-out;
-  }
-  img.cover:hover{
-    transform:scale(1.03);
+    transition:transform .3s ease-in-out, box-shadow .3s ease-in-out;
   }
 
-  /* Ripple underlay – now clearly visible and behind the cover */
-  .cover-wrapper::before{
+  img.cover:hover{
+    transform:scale(1.04);
+    box-shadow:0 0 55px rgba(0,200,255,0.7);
+  }
+
+  /* Layered ripples */
+  .cover-wrapper::before,
+  .cover-wrapper::after{
     content:"";
     position:absolute;
-    left:50%;top:55%;  /* a bit below center to feel like it's under the book */
+    left:50%;top:55%;
     width:0;height:0;
     border-radius:50%;
     background:radial-gradient(circle,
-      rgba(42,167,255,0.45) 0%,
-      rgba(42,167,255,0.12) 55%,
+      rgba(80,200,255,0.45) 0%,
+      rgba(30,100,180,0.12) 60%,
       transparent 100%);
     transform:translate(-50%,-50%);
     opacity:0;
@@ -65,41 +69,87 @@
   }
 
   .cover-wrapper:hover::before{
-    animation:ripple 1.4s ease-out forwards;
+    animation:ripple1 1.5s ease-out forwards;
+  }
+  .cover-wrapper:hover::after{
+    animation:ripple2 2.4s ease-out forwards;
   }
 
-  @keyframes ripple{
-    0%{
-      width:0;height:0;opacity:0.45;
-    }
-    60%{
-      width:420px;height:420px;opacity:0.22;
-    }
-    100%{
-      width:600px;height:600px;opacity:0;
-    }
+  @keyframes ripple1{
+    0%{width:0;height:0;opacity:.45;}
+    60%{width:420px;height:420px;opacity:.25;}
+    100%{width:620px;height:620px;opacity:0;}
+  }
+  @keyframes ripple2{
+    0%{width:0;height:0;opacity:.25;}
+    60%{width:500px;height:500px;opacity:.15;}
+    100%{width:820px;height:820px;opacity:0;}
+  }
+
+  /* Ambient slow breathing pulse */
+  @keyframes ambientPulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.01);}
   }
 
   h1{
-    font-family:'Orbitron',sans-serif;font-size:2.8rem;
-    color:#56c8ff;margin-bottom:.4rem;text-shadow:0 0 20px #1e90ff;
+    font-family:'Orbitron',sans-serif;
+    font-size:2.8rem;
+    color:#56c8ff;
+    margin-bottom:.4rem;
+    text-shadow:0 0 20px #1e90ff;
   }
-  .tagline{font-size:1.2rem;color:#c0cbd6;margin-bottom:2rem;}
-  .blurb{max-width:650px;margin:0 auto 2.5rem;font-size:1.05rem;color:#ccd4df;}
+
+  .tagline{
+    font-size:1.2rem;
+    color:#c0cbd6;
+    margin-bottom:2rem;
+  }
+
+  .blurb{
+    max-width:650px;
+    margin:0 auto 2.5rem;
+    font-size:1.05rem;
+    color:#ccd4df;
+  }
 
   .cta-button{
-    display:inline-block;background:#56c8ff;color:#fff;
-    font-size:1.2rem;padding:.9rem 2.4rem;text-decoration:none;border-radius:4px;
+    display:inline-block;
+    background:#56c8ff;
+    color:#fff;
+    font-size:1.2rem;
+    padding:.9rem 2.4rem;
+    text-decoration:none;
+    border-radius:4px;
     box-shadow:0 0 15px rgba(0,180,255,0.3);
     transition:background .3s,box-shadow .3s;
   }
-  .cta-button:hover{background:#1da1ff;box-shadow:0 0 25px rgba(0,210,255,0.6);}
 
-  #counter{margin-top:1.2rem;font-size:.95rem;color:#88b9d8;}
+  .cta-button:hover{
+    background:#1da1ff;
+    box-shadow:0 0 25px rgba(0,210,255,0.6);
+  }
 
-  footer{margin-top:2.5rem;font-size:.9rem;color:#6a7a89;}
-  footer a{color:#56c8ff;text-decoration:none;border-bottom:1px solid rgba(86,200,255,0.6);}
-  footer a:hover{color:#9fe0ff;border-bottom-color:#9fe0ff;}
+  #counter{
+    margin-top:1.2rem;
+    font-size:.95rem;
+    color:#88b9d8;
+  }
+
+  footer{
+    margin-top:2.5rem;
+    font-size:.9rem;
+    color:#6a7a89;
+  }
+  footer a{
+    color:#56c8ff;
+    text-decoration:none;
+    border-bottom:1px solid rgba(86,200,255,0.6);
+  }
+  footer a:hover{
+    color:#9fe0ff;
+    border-bottom-color:#9fe0ff;
+  }
 
   @media(max-width:600px){
     h1{font-size:2.2rem;}
